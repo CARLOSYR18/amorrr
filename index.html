@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Cumpleaños</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="birthday-card">
+            <h1 class="title">¡Feliz Cumpleaños, Mi Amor!</h1>
+            
+            <div class="card-content">
+                <div class="image-container">
+                    <img src="https://i.postimg.cc/KzLh4Chp/Imagen-de-Whats-App-2025-08-01-a-las-21-33-09-a7f2a85e.jpg" alt="Pareja abrazándose" class="couple-image">
+                </div>
+                
+                <div class="password-section">
+                    <p class="password-text">Ingresa la contraseña</p>
+                    <p class="password-subtext">Para: Un día muy especial para nosotros</p>
+                    
+                    <div class="password-input">
+                        <input type="password" id="passwordField" readonly>
+                    </div>
+                    
+                    <div class="numpad">
+                        <div class="numpad-row">
+                            <button class="numpad-btn" onclick="addNumber('1')">1</button>
+                            <button class="numpad-btn" onclick="addNumber('2')">2</button>
+                            <button class="numpad-btn" onclick="addNumber('3')">3</button>
+                        </div>
+                        <div class="numpad-row">
+                            <button class="numpad-btn" onclick="addNumber('4')">4</button>
+                            <button class="numpad-btn" onclick="addNumber('5')">5</button>
+                            <button class="numpad-btn" onclick="addNumber('6')">6</button>
+                        </div>
+                        <div class="numpad-row">
+                            <button class="numpad-btn" onclick="addNumber('7')">7</button>
+                            <button class="numpad-btn" onclick="addNumber('8')">8</button>
+                            <button class="numpad-btn" onclick="addNumber('9')">9</button>
+                        </div>
+                        <div class="numpad-row">
+                            <button class="numpad-btn" onclick="addNumber('mail')">✉</button>
+                            <button class="numpad-btn" onclick="addNumber('0')">0</button>
+                            <button class="numpad-btn" onclick="addNumber('#')">#</button>
+                        </div>
+                    </div>
+                    
+                    <button class="enter-btn" onclick="checkPassword()">Entrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
