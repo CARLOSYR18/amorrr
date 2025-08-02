@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Cumpleaños Mi Amor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1a1a2e;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: rgba(30, 30, 50, 0.8);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .title {
+            font-family: 'Dancing Script', cursive;
+            color: #ff3366;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            color: #f9f9f9;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .photo-gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .photo-container {
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .photo {
+            width: 100%;
+            display: block;
+        }
+
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 20px;
+            color: white;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .message {
+            background-color: rgba(30, 30, 50, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .message p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .heart {
+            color: #ff3366;
+            font-size: 1.5rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(20, 20, 40, 0.8);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        @media (min-width: 768px) {
+            .photo-gallery {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .photo-container {
+                width: 45%;
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Feliz Cumpleaños Mi Amor</h1>
+            <p class="subtitle">Un día especial para una persona especial</p>
+        </div>
+
+        <div class="photo-gallery">
+            <div class="photo-container">
+                <img src="couple.jpg" alt="Nosotros juntos" class="photo">
+                <div class="photo-caption">Juntos siempre</div>
+            </div>
+        </div>
+
+        <div class="message">
+            <p>Hoy es un día muy especial, el día en que llegaste a este mundo. Quiero que sepas lo mucho que significas para mí y lo feliz que me haces cada día.</p>
+            <p>Cada momento a tu lado es un regalo, y estoy agradecido/a por tenerte en mi vida. Tu sonrisa ilumina mis días y tu amor llena mi corazón.</p>
+            <p>Te deseo un cumpleaños lleno de alegría, amor y momentos inolvidables. Que todos tus sueños se hagan realidad.</p>
+            <p class="heart">❤️</p>
+            <p>Con todo mi amor,</p>
+            <p>Tu amor</p>
+        </div>
+
+        <div class="footer">
+            <p>Hecho con amor para ti</p>
+        </div>
+    </div>
+</body>
+</html>
