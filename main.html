@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz Cumpleaños Mi Amor</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <style>
+    <title>Para Mi Amor, María</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
+    <style id="app-style">
         * {
             margin: 0;
             padding: 0;
@@ -17,6 +19,7 @@
             background-color: #1a1a2e;
             color: #fff;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .container {
@@ -26,33 +29,74 @@
         }
 
         .header {
-            background-color: rgba(30, 30, 50, 0.8);
+            background: linear-gradient(135deg, rgba(43, 43, 78, 0.9) 0%, rgba(66, 39, 90, 0.9) 100%);
             padding: 20px;
             text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: url('https://cdn.pixabay.com/photo/2017/07/24/20/08/heart-2535508_1280.png');
+            background-size: 100px;
+            opacity: 0.1;
+            z-index: 0;
+            animation: floatBackground 30s linear infinite;
+        }
+
+        @keyframes floatBackground {
+            0% { background-position: 0 0; }
+            100% { background-position: 500px 500px; }
         }
 
         .title {
             font-family: 'Dancing Script', cursive;
             color: #ff3366;
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 10px;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
         }
 
         .subtitle {
             color: #f9f9f9;
             font-size: 1.2rem;
             margin-bottom: 20px;
+            font-weight: 300;
+            position: relative;
+            z-index: 2;
         }
 
-        .photo-gallery {
+        .card-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 20px;
+            position: relative;
         }
 
-        .photo-container {
+        .card-container::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 51, 102, 0.2) 0%, rgba(26, 26, 46, 0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .photo-card {
             width: 100%;
             max-width: 500px;
             margin-bottom: 30px;
@@ -60,44 +104,234 @@
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
             position: relative;
+            transform: translateY(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(255, 51, 102, 0.4);
         }
 
         .photo {
             width: 100%;
+            height: 300px;
+            object-fit: cover;
             display: block;
+            transition: filter 0.3s ease;
         }
 
-        .photo-caption {
+        .photo-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
             background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            padding: 20px;
+            padding: 40px 20px 20px;
+            color: white;
+        }
+
+        .photo-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.7rem;
+            text-align: center;
+            line-height: 1.4;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .photo-quote {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-style: italic;
+            text-align: center;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        .read-button-container {
+            text-align: center;
+            margin: 20px 0 40px;
+            position: relative;
+        }
+
+        .heart-button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            width: 120px;
+            height: 120px;
+            transition: transform 0.3s ease;
+        }
+
+        .heart-button:hover {
+            transform: scale(1.1);
+        }
+
+        .heart-button:focus {
+            outline: none;
+        }
+
+        .heart-svg {
+            width: 100%;
+            height: 100%;
+            fill: #ff3366;
+            filter: drop-shadow(0 5px 10px rgba(255, 51, 102, 0.5));
+        }
+
+        .button-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             color: white;
             font-family: 'Dancing Script', cursive;
             font-size: 1.5rem;
+            white-space: nowrap;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .letter-container {
+            background: linear-gradient(135deg, #2b2b4e 0%, #422751 100%);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 90%;
+            width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            border: 1px solid rgba(255, 211, 118, 0.3);
+        }
+
+        .modal.show .letter-container {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .letter-header {
             text-align: center;
+            margin-bottom: 30px;
+            position: relative;
         }
 
-        .message {
-            background-color: rgba(30, 30, 50, 0.8);
-            padding: 30px;
-            border-radius: 15px;
-            margin: 20px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        .letter-header::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 25%;
+            width: 50%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 211, 118, 0.7), transparent);
         }
 
-        .message p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .heart {
+        .letter-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
             color: #ff3366;
+            margin-bottom: 10px;
+        }
+
+        .letter-content {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: #f0f0f0;
+        }
+
+        .letter-signature {
+            text-align: right;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #ff3366;
+            margin-top: 30px;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            color: #ffb3c0;
             font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-button:hover {
+            color: #ff3366;
+        }
+
+        .letter-decoration {
+            position: absolute;
+            font-size: 10rem;
+            color: rgba(255, 51, 102, 0.05);
+            z-index: -1;
+        }
+
+        .decoration-1 {
+            top: -30px;
+            left: -30px;
+        }
+
+        .decoration-2 {
+            bottom: -30px;
+            right: -30px;
+            transform: rotate(180deg);
+        }
+
+        .heart-pulse {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: radial-gradient(circle, rgba(255, 51, 102, 0.7) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0);
+            z-index: -1;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
         }
 
         .footer {
@@ -106,18 +340,49 @@
             background-color: rgba(20, 20, 40, 0.8);
             font-size: 0.9rem;
             color: #aaa;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: "♥";
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 51, 102, 0.1);
+            animation: float 15s linear infinite;
+        }
+
+        .footer::after {
+            content: "♥";
+            position: absolute;
+            font-size: 1.5rem;
+            color: rgba(255, 51, 102, 0.1);
+            left: 60%;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { top: -30px; left: 10%; opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { top: 100%; left: 40%; opacity: 0; }
         }
 
         @media (min-width: 768px) {
-            .photo-gallery {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
+            .title {
+                font-size: 4rem;
             }
 
-            .photo-container {
-                width: 45%;
-                margin: 10px;
+            .photo-card {
+                max-width: 600px;
+            }
+
+            .photo {
+                height: 400px;
+            }
+
+            .letter-container {
+                padding: 60px;
             }
         }
     </style>
@@ -125,29 +390,89 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1 class="title">Feliz Cumpleaños Mi Amor</h1>
-            <p class="subtitle">Un día especial para una persona especial</p>
+            <h1 class="title">Para Mi Amor, María</h1>
+            <p class="subtitle">Mi vida, este día especial es para celebrar el amor que compartimos. Esta sorpresa es para ti, porque eres mi mundo.</p>
         </div>
 
-        <div class="photo-gallery">
-            <div class="photo-container">
-                <img src="couple.jpg" alt="Nosotros juntos" class="photo">
-                <div class="photo-caption">Juntos siempre</div>
+        <div class="card-container">
+            <div class="photo-card animate__animated animate__fadeIn">
+                <img src="https://cdn.pixabay.com/photo/2018/01/05/16/24/sunset-3063689_1280.jpg" alt="Pareja al atardecer" class="photo">
+                <div class="photo-overlay">
+                    <div class="photo-text">"Tú eres mi hogar, mi refugio, mi amor por siempre."</div>
+                </div>
             </div>
         </div>
 
-        <div class="message">
-            <p>Hoy es un día muy especial, el día en que llegaste a este mundo. Quiero que sepas lo mucho que significas para mí y lo feliz que me haces cada día.</p>
-            <p>Cada momento a tu lado es un regalo, y estoy agradecido/a por tenerte en mi vida. Tu sonrisa ilumina mis días y tu amor llena mi corazón.</p>
-            <p>Te deseo un cumpleaños lleno de alegría, amor y momentos inolvidables. Que todos tus sueños se hagan realidad.</p>
-            <p class="heart">❤️</p>
-            <p>Con todo mi amor,</p>
-            <p>Tu amor</p>
+        <div class="read-button-container animate__animated animate__bounceIn animate__delay-1s">
+            <button id="read-letter-button" class="heart-button">
+                <div class="heart-pulse"></div>
+                <svg class="heart-svg" viewBox="0 0 512 512">
+                    <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
+                </svg>
+                <span class="button-text">Leer Carta</span>
+            </button>
+        </div>
+
+        <div id="letter-modal" class="modal">
+            <div class="letter-container">
+                <i class="letter-decoration decoration-1 fas fa-quote-left"></i>
+                <i class="letter-decoration decoration-2 fas fa-quote-right"></i>
+                <button id="close-modal" class="close-button">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="letter-header">
+                    <h2 class="letter-title">Mi Querida María</h2>
+                </div>
+                <div class="letter-content">
+                    <p>Mi vida, este día especial es para celebrar el amor que compartimos. Esta sorpresa es para ti, porque eres mi mundo.</p>
+                    <p>En cada amanecer pienso en la suerte que tengo al despertar sabiendo que existes y que formas parte de mi vida. Tu sonrisa ilumina hasta el día más oscuro, y tu corazón es el refugio donde encuentro paz.</p>
+                    <p>Quiero que sepas que cada momento a tu lado es un tesoro que guardo en lo más profundo de mi ser. Las risas compartidas, los sueños construidos juntos, incluso los desafíos que hemos superado, todo se convierte en parte de esta hermosa historia que escribimos día a día.</p>
+                    <p>Celebro no solo este día especial, sino cada instante que me regalas. Tu amor me hace mejor persona, me inspira a crecer y me da fuerzas para enfrentar cualquier adversidad.</p>
+                    <p>Prometo seguir construyendo recuerdos a tu lado, caminar contigo en los momentos de alegría y sostenerte en los de tristeza. Porque nuestro amor es el regalo más precioso que la vida me ha dado.</p>
+                    <p>Gracias por ser exactamente quien eres, por amarme como lo haces y por permitirme ser parte de tu vida. Te amo más de lo que las palabras pueden expresar.</p>
+                </div>
+                <div class="letter-signature">
+                    Con todo mi amor,<br>
+                    Tu amor por siempre
+                </div>
+            </div>
         </div>
 
         <div class="footer">
-            <p>Hecho con amor para ti</p>
+            <p>Hecho con amor para ti ♥ 2025</p>
         </div>
     </div>
+
+    <script id="app-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const readButton = document.getElementById('read-letter-button');
+            const modal = document.getElementById('letter-modal');
+            const closeButton = document.getElementById('close-modal');
+            
+            readButton.addEventListener('click', function() {
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            closeButton.addEventListener('click', function() {
+                modal.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            });
+            
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.remove('show');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('show')) {
+                    modal.classList.remove('show');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
