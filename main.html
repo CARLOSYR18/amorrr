@@ -75,6 +75,57 @@
             z-index: 2;
         }
 
+        .countdown-container {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            max-width: 500px;
+            margin: 0 auto 20px;
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(255, 211, 118, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .countdown-title {
+            font-family: 'Dancing Script', cursive;
+            color: #ff6b97;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            font-size: 1.2rem;
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .countdown-number {
+            background: rgba(255, 51, 102, 0.2);
+            border-radius: 8px;
+            padding: 5px 10px;
+            min-width: 60px;
+            font-weight: 600;
+            font-size: 1.8rem;
+            color: #fff;
+            text-align: center;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 51, 102, 0.3);
+        }
+
+        .countdown-label {
+            margin-top: 5px;
+            font-size: 0.8rem;
+            color: #ddd;
+        }
+
         .card-container {
             display: flex;
             flex-direction: column;
@@ -368,25 +419,6 @@
             100% { top: 100%; left: 40%; opacity: 0; }
         }
 
-        @media (min-width: 768px) {
-            .title {
-                font-size: 4rem;
-            }
-
-            .photo-card {
-                max-width: 600px;
-            }
-
-            .photo {
-                height: 400px;
-            }
-
-            .letter-container {
-                padding: 60px;
-            }
-        }
-
-        /* Memory Section Styles */
         .memories-section,
         .future-section {
             padding: 40px 20px;
@@ -461,7 +493,6 @@
             transform: scale(1.03);
         }
 
-        /* Future Section Styles */
         .future-message {
             text-align: center;
             max-width: 700px;
@@ -501,6 +532,7 @@
             height: 100%;
             border-radius: 30px;
             transition: width 1.5s ease;
+            width: 0;
         }
 
         .love-caption {
@@ -523,7 +555,49 @@
             margin-top: 15px;
         }
 
+        .music-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease;
+        }
+
+        .music-controls:hover {
+            transform: scale(1.1);
+        }
+
+        .music-icon {
+            color: #ff3366;
+            font-size: 1.5rem;
+        }
+
         @media (min-width: 768px) {
+            .title {
+                font-size: 4rem;
+            }
+
+            .photo-card {
+                max-width: 600px;
+            }
+
+            .photo {
+                height: 400px;
+            }
+
+            .letter-container {
+                padding: 60px;
+            }
+            
             .memory-cards {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
@@ -531,6 +605,28 @@
             
             .section-title {
                 font-size: 3rem;
+            }
+
+            .countdown-container {
+                padding: 20px;
+            }
+
+            .countdown-title {
+                font-size: 1.8rem;
+            }
+
+            .countdown-timer {
+                font-size: 1.5rem;
+                gap: 25px;
+            }
+
+            .countdown-number {
+                font-size: 2.2rem;
+                min-width: 70px;
+            }
+
+            .countdown-label {
+                font-size: 0.9rem;
             }
         }
 
@@ -544,7 +640,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1 class="title">Para Mi Amor,Nasheli</h1>
+            <h1 class="title">Para Mi Amor, Nasheli</h1>
             <p class="subtitle">Mi vida, este día especial es para celebrar el amor que compartimos. Esta sorpresa es para ti, porque eres mi mundo.</p>
         </div>
 
@@ -618,8 +714,8 @@
                     <div class="memory-content">
                         <h3 class="memory-title">Salida especial</h3>
                         <p class="memory-date">29 de junio, 2025</p>
-                        <p class="memory-description">La pasamos bien amor comiendo y estando juntos , un día que siempre recordaré.</p>
-                        <img src="https://i.postimg.cc/KzLh4Chp/Imagen-de-Whats-App-2025-08-01-a-las-21-33-09-a7f2a85e.jpg" class="memory-image">
+                        <p class="memory-description">La pasamos bien amor comiendo y estando juntos, un día que siempre recordaré.</p>
+                        <img src="https://i.postimg.cc/KzLh4Chp/Imagen-de-Whats-App-2025-08-01-a-las-21-33-09-a7f2a85e.jpg" class="memory-image" alt="Salida especial juntos">
                     </div>
                 </div>
             </div>
@@ -632,7 +728,7 @@
             <div class="love-card">
                 <h3 class="love-title">Nuestro Amor</h3>
                 <div class="progress-container">
-                    <div class="progress-bar" style="width: 100%;"></div>
+                    <div class="progress-bar" id="love-progress"></div>
                 </div>
                 <p class="love-caption">100% Tuyo, siempre</p>
             </div>
@@ -643,24 +739,127 @@
             </div>
         </div>
 
+        <div class="countdown-container animate__animated animate__fadeIn">
+            <h3 class="countdown-title">Días para nuestro aniversario</h3>
+            <div class="countdown-timer" id="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Días</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Horas</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutos</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Segundos</div>
+                </div>
+            </div>
+        </div>
+
         <div class="footer">
             <p>Hecho con amor para ti ♥ 2025</p>
         </div>
     </div>
 
+    <div class="music-controls" id="music-toggle">
+        <i class="music-icon fas fa-pause" id="music-icon"></i>
+    </div>
+
+    <audio id="background-music" loop preload="auto">
+        <source src="tormenta.mp3" type="audio/mpeg">
+        Tu navegador no soporta audio HTML5.
+    </audio>
+
     <script id="app-script">
         document.addEventListener('DOMContentLoaded', function() {
+            // Audio player setup
+            const audioElement = document.getElementById('background-music');
+            const musicToggle = document.getElementById('music-toggle');
+            const musicIcon = document.getElementById('music-icon');
+            let isPlaying = false;
+            
+            // Try to play audio automatically (may be blocked by browser)
+            const playPromise = audioElement.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    isPlaying = true;
+                    musicIcon.classList.remove('fa-play');
+                    musicIcon.classList.add('fa-pause');
+                }).catch(error => {
+                    // Auto-play was prevented
+                    isPlaying = false;
+                    musicIcon.classList.remove('fa-pause');
+                    musicIcon.classList.add('fa-play');
+                });
+            }
+            
+            // Music controls
+            musicToggle.addEventListener('click', function() {
+                if (isPlaying) {
+                    audioElement.pause();
+                    musicIcon.classList.remove('fa-pause');
+                    musicIcon.classList.add('fa-play');
+                } else {
+                    audioElement.play();
+                    musicIcon.classList.remove('fa-play');
+                    musicIcon.classList.add('fa-pause');
+                }
+                isPlaying = !isPlaying;
+            });
+            
+            // Also toggle music when clicking on the page (for mobile browsers)
+            document.addEventListener('click', function() {
+                if (!isPlaying) {
+                    audioElement.play().then(() => {
+                        isPlaying = true;
+                        musicIcon.classList.remove('fa-play');
+                        musicIcon.classList.add('fa-pause');
+                    }).catch(error => {
+                        // Still blocked - do nothing
+                    });
+                }
+            }, {once: true});
+            
+            // Countdown Timer
+            function updateCountdown() {
+                const targetDate = new Date('September 15, 2025 00:00:00').getTime();
+                const now = new Date().getTime();
+                const difference = targetDate - now;
+                
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').innerText = days.toString().padStart(2, '0');
+                document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+                
+                if (difference < 0) {
+                    clearInterval(countdownTimer);
+                    document.getElementById('days').innerText = '00';
+                    document.getElementById('hours').innerText = '00';
+                    document.getElementById('minutes').innerText = '00';
+                    document.getElementById('seconds').innerText = '00';
+                    document.querySelector('.countdown-title').innerText = '¡Feliz aniversario!';
+                }
+            }
+            
+            // Start the countdown timer
+            updateCountdown();
+            const countdownTimer = setInterval(updateCountdown, 1000);
+            
+            // Modal functionality
             const readButton = document.getElementById('read-letter-button');
             const modal = document.getElementById('letter-modal');
             const closeButton = document.getElementById('close-modal');
-            
-            // Initialize progress bar animation
-            setTimeout(() => {
-                const progressBar = document.querySelector('.progress-bar');
-                if (progressBar) {
-                    progressBar.style.width = '100%';
-                }
-            }, 500);
             
             readButton.addEventListener('click', function() {
                 modal.classList.add('show');
@@ -685,12 +884,15 @@
                     document.body.style.overflow = 'auto';
                 }
             });
+            
+            // Progress bar animation
+            setTimeout(() => {
+                const progressBar = document.getElementById('love-progress');
+                if (progressBar) {
+                    progressBar.style.width = '100%';
+                }
+            }, 500);
         });
     </script>
 </body>
 </html>
-
-
-
-
-
