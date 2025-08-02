@@ -445,6 +445,20 @@
 
         .memory-description {
             line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .memory-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-top: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .memory-card:hover .memory-image {
+            transform: scale(1.03);
         }
 
         /* Future Section Styles */
@@ -584,25 +598,28 @@
             <div class="memory-cards">
                 <div class="memory-card">
                     <div class="memory-content">
-                        <h3 class="memory-title">salida a lurin</h3>
+                        <h3 class="memory-title">Salida a Lurin</h3>
                         <p class="memory-date">26 de febrero, 2025</p>
                         <p class="memory-description">Ese día, mi corazón supo que había encontrado a su otra mitad.</p>
+                        <img src="https://cdn.pixabay.com/photo/2018/11/17/22/15/trees-3822149_1280.jpg" alt="Recuerdo de Lurin" class="memory-image">
                     </div>
                 </div>
                 
                 <div class="memory-card">
                     <div class="memory-content">
-                        <h3 class="memory-title">salida a la playa</h3>
+                        <h3 class="memory-title">Salida a la playa</h3>
                         <p class="memory-date">13 de marzo, 2025</p>
-                        <p class="memory-description">esa salida fue muy bonita la pasamos bien amor</p>
+                        <p class="memory-description">Esa salida fue muy bonita, la pasamos bien amor.</p>
+                        <img src="https://cdn.pixabay.com/photo/2017/01/20/00/30/maldives-1993704_1280.jpg" alt="Recuerdo de la playa" class="memory-image">
                     </div>
                 </div>
                 
                 <div class="memory-card">
                     <div class="memory-content">
-                        <h3 class="memory-title">salida</h3>
+                        <h3 class="memory-title">Salida especial</h3>
                         <p class="memory-date">29 de junio, 2025</p>
-                        <p class="memory-description">la pasamos bien amor</p>
+                        <p class="memory-description">La pasamos bien amor, un día que siempre recordaré.</p>
+                        <img src="https://cdn.pixabay.com/photo/2016/11/23/15/14/picnic-1853310_1280.jpg" alt="Recuerdo de salida especial" class="memory-image">
                     </div>
                 </div>
             </div>
@@ -622,7 +639,7 @@
             
             <div class="love-footer">
                 <p>Hecho con todo mi corazón para la persona que ilumina mi mundo.</p>
-                <p class="signature">carlos</p>
+                <p class="signature">Carlos</p>
             </div>
         </div>
 
@@ -636,6 +653,14 @@
             const readButton = document.getElementById('read-letter-button');
             const modal = document.getElementById('letter-modal');
             const closeButton = document.getElementById('close-modal');
+            
+            // Initialize progress bar animation
+            setTimeout(() => {
+                const progressBar = document.querySelector('.progress-bar');
+                if (progressBar) {
+                    progressBar.style.width = '100%';
+                }
+            }, 500);
             
             readButton.addEventListener('click', function() {
                 modal.classList.add('show');
