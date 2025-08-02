@@ -385,6 +385,146 @@
                 padding: 60px;
             }
         }
+
+        /* Memory Section Styles */
+        .memories-section,
+        .future-section {
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title {
+            font-family: 'Dancing Script', cursive;
+            color: #ff3366;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .memory-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .memory-card {
+            background: rgba(30,30,50,0.7);
+            border-radius: 15px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .memory-content {
+            color: #fff;
+        }
+
+        .memory-title {
+            font-family: 'Dancing Script', cursive;
+            color: #ff3366;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .memory-date {
+            color: #bbb;
+            font-size: 0.9rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .memory-description {
+            line-height: 1.6;
+        }
+
+        /* Future Section Styles */
+        .future-message {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .love-card {
+            background: rgba(30,30,50,0.7);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            margin: 0 auto 40px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .love-title {
+            font-family: 'Dancing Script', cursive;
+            color: #ff3366;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .progress-container {
+            background: #333;
+            border-radius: 30px;
+            height: 20px;
+            width: 100%;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #ff3366, #ff6b97);
+            height: 100%;
+            border-radius: 30px;
+            transition: width 1.5s ease;
+        }
+
+        .love-caption {
+            font-style: italic;
+            color: #f0f0f0;
+            font-size: 1.2rem;
+        }
+
+        .love-footer {
+            text-align: center;
+            max-width: 600px;
+            margin: 40px auto 0;
+            padding: 20px;
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            color: #ff3366;
+            font-size: 2.5rem;
+            margin-top: 15px;
+        }
+
+        @media (min-width: 768px) {
+            .memory-cards {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .section-title {
+                font-size: 3rem;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .memory-cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
     </style>
 </head>
 <body>
@@ -435,6 +575,54 @@
                     Con todo mi amor,<br>
                     Tu amor por siempre
                 </div>
+            </div>
+        </div>
+
+        <div id="memories" class="memories-section">
+            <h2 class="section-title">Nuestros Recuerdos</h2>
+            
+            <div class="memory-cards">
+                <div class="memory-card">
+                    <div class="memory-content">
+                        <h3 class="memory-title">salida a lurin</h3>
+                        <p class="memory-date">26 de febrero, 2025</p>
+                        <p class="memory-description">Ese día, mi corazón supo que había encontrado a su otra mitad.</p>
+                    </div>
+                </div>
+                
+                <div class="memory-card">
+                    <div class="memory-content">
+                        <h3 class="memory-title">salida a la playa</h3>
+                        <p class="memory-date">13 de marzo, 2025</p>
+                        <p class="memory-description">esa salida fue muy bonita la pasamos bien amor</p>
+                    </div>
+                </div>
+                
+                <div class="memory-card">
+                    <div class="memory-content">
+                        <h3 class="memory-title">salida</h3>
+                        <p class="memory-date">29 de junio, 2025</p>
+                        <p class="memory-description">la pasamos bien amor</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="future" class="future-section">
+            <h2 class="section-title">Nuestro Futuro</h2>
+            <p class="future-message">Imagina los días que vendrán: viajes, risas, y un amor que crece cada día. Contigo, todo es posible.</p>
+            
+            <div class="love-card">
+                <h3 class="love-title">Nuestro Amor</h3>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 100%;"></div>
+                </div>
+                <p class="love-caption">100% Tuyo, siempre</p>
+            </div>
+            
+            <div class="love-footer">
+                <p>Hecho con todo mi corazón para la persona que ilumina mi mundo.</p>
+                <p class="signature">carlos</p>
             </div>
         </div>
 
