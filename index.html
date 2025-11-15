@@ -43,12 +43,37 @@
             position: relative;
             overflow: hidden;
             transform: scale(0.9);
-            animation: phoneAppear 1s ease forwards;
+            animation: phoneAppear 1s ease forwards, phoneGlow 4s ease-in-out 1s infinite, phoneTilt 6s ease-in-out 1s infinite;
         }
 
         @keyframes phoneAppear {
             0% { opacity: 0; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1); }
+            100% { opacity: 1; transform: scale(0.9); }
+        }
+
+        @keyframes phoneGlow {
+            0%, 100% {
+                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), 
+                            inset 0 2px 15px rgba(255, 255, 255, 0.1),
+                            0 0 0 2px #2a2f3f;
+            }
+            50% {
+                box-shadow: 0 25px 60px rgba(255, 91, 141, 0.4), 
+                            inset 0 2px 15px rgba(255, 255, 255, 0.2),
+                            0 0 30px rgba(255, 91, 141, 0.3);
+            }
+        }
+
+        @keyframes phoneTilt {
+            0%, 100% {
+                transform: scale(0.9) rotateZ(0deg);
+            }
+            25% {
+                transform: scale(0.9) rotateZ(1.5deg);
+            }
+            75% {
+                transform: scale(0.9) rotateZ(-1.5deg);
+            }
         }
 
         .phone-notch {
@@ -110,6 +135,27 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             overflow-y: auto;
             transition: all 0.3s ease;
+            animation: cardEntrance 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, cardFloat 3s ease-in-out 0.8s infinite;
+        }
+
+        @keyframes cardEntrance {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes cardFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-3px);
+            }
         }
 
         .title {
@@ -553,76 +599,17 @@
         const imageUpload = document.getElementById('imageUpload');
         const previewImage = document.getElementById('previewImage');
         
-        // Image upload handling
-        imageUpload.addEventListener('change', function() {
-            const file = this.files[0];
-            if (file) {
-                const maxSizeInBytes = 25 * 1024 * 1024;
-                
-                if (file.size > maxSizeInBytes) {
-                    alert('La imagen es demasiado grande. Por favor, seleccione una imagen menor a 25MB.');
-                    return;
-                }
-                
-                const reader = new FileReader();
-                
-                reader.onload = function(e) {
-                    previewImage.src = e.target.result;
-                };
-                
-                reader.readAsDataURL(file);
-            }
-        });
+        // Helper functions (DEFINIDAS PRIMERO)
+        function stopPhoneAnimation() {
+            const phoneContainer = document.querySelector('.phone-container');
+            phoneContainer.style.animation = 'phoneAppear 1s ease forwards';
+        }
         
-        // Add number to password
-        numberBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const num = btn.getAttribute('data-number');
-                addNumber(num);
-                animateButton(btn);
-            });
-            
-            // Hover effect
-            btn.addEventListener('mouseenter', () => {
-                btn.style.transform = 'translateY(-5px) scale(1.1)';
-            });
-            
-            btn.addEventListener('mouseleave', () => {
-                btn.style.transform = 'translateY(0) scale(1)';
-            });
-        });
+        function resumePhoneAnimation() {
+            const phoneContainer = document.querySelector('.phone-container');
+            phoneContainer.style.animation = 'phoneAppear 1s ease forwards, phoneGlow 4s ease-in-out 1s infinite, phoneTilt 6s ease-in-out 1s infinite';
+        }
         
-        // Delete last digit
-        deleteBtn.addEventListener('click', () => {
-            deleteNumber();
-            animateButton(deleteBtn);
-        });
-        
-        // Clear password
-        clearBtn.addEventListener('click', () => {
-            clearPassword();
-            animateButton(clearBtn);
-        });
-        
-        // Enter button
-        enterBtn.addEventListener('click', () => {
-            checkPassword();
-        });
-        
-        // Keyboard support
-        document.addEventListener('keydown', (e) => {
-            if (e.key >= '0' && e.key <= '9') {
-                addNumber(e.key);
-            } else if (e.key === 'Backspace') {
-                deleteNumber();
-            } else if (e.key === 'Enter') {
-                checkPassword();
-            } else if (e.key === 'Escape') {
-                clearPassword();
-            }
-        });
-        
-        // Helper functions
         function addNumber(num) {
             if (currentPassword.length < 4) {
                 currentPassword += num;
@@ -688,6 +675,118 @@
                 updateDisplay();
             }
         }
+        
+        // Image upload handling
+        imageUpload.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const maxSizeInBytes = 25 * 1024 * 1024;
+                
+                if (file.size > maxSizeInBytes) {
+                    alert('La imagen es demasiado grande. Por favor, seleccione una imagen menor a 25MB.');
+                    return;
+                }
+                
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                };
+                
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Add number to password
+        numberBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const num = btn.getAttribute('data-number');
+                addNumber(num);
+                animateButton(btn);
+            });
+            
+            // Hover effect
+            btn.addEventListener('mouseenter', () => {
+                btn.style.transform = 'translateY(-5px) scale(1.1)';
+                stopPhoneAnimation();
+            });
+            
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translateY(0) scale(1)';
+                resumePhoneAnimation();
+            });
+            
+            // Touch events
+            btn.addEventListener('touchstart', () => {
+                stopPhoneAnimation();
+            });
+            
+            btn.addEventListener('touchend', () => {
+                resumePhoneAnimation();
+            });
+        });
+        
+        // Delete last digit
+        deleteBtn.addEventListener('click', () => {
+            deleteNumber();
+            animateButton(deleteBtn);
+        });
+        
+        deleteBtn.addEventListener('mouseenter', () => {
+            stopPhoneAnimation();
+        });
+        
+        deleteBtn.addEventListener('mouseleave', () => {
+            resumePhoneAnimation();
+        });
+        
+        deleteBtn.addEventListener('touchstart', () => {
+            stopPhoneAnimation();
+        });
+        
+        deleteBtn.addEventListener('touchend', () => {
+            resumePhoneAnimation();
+        });
+        
+        // Clear password
+        clearBtn.addEventListener('click', () => {
+            clearPassword();
+            animateButton(clearBtn);
+        });
+        
+        clearBtn.addEventListener('mouseenter', () => {
+            stopPhoneAnimation();
+        });
+        
+        clearBtn.addEventListener('mouseleave', () => {
+            resumePhoneAnimation();
+        });
+        
+        clearBtn.addEventListener('touchstart', () => {
+            stopPhoneAnimation();
+        });
+        
+        clearBtn.addEventListener('touchend', () => {
+            resumePhoneAnimation();
+        });
+        
+        // Enter button
+        enterBtn.addEventListener('click', () => {
+            checkPassword();
+        });
+        
+        // Keyboard support
+        document.addEventListener('keydown', (e) => {
+            if (e.key >= '0' && e.key <= '9') {
+                addNumber(e.key);
+            } else if (e.key === 'Backspace') {
+                deleteNumber();
+            } else if (e.key === 'Enter') {
+                checkPassword();
+            } else if (e.key === 'Escape') {
+                clearPassword();
+            }
+        });
     </script>
 </body>
 </html>
