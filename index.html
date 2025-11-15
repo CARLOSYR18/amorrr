@@ -135,7 +135,7 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             overflow-y: auto;
             transition: all 0.3s ease;
-            animation: cardEntrance 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, cardFloat 3s ease-in-out 0.8s infinite;
+            animation: cardEntrance 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         @keyframes cardEntrance {
@@ -146,15 +146,6 @@
             100% {
                 opacity: 1;
                 transform: scale(1) translateY(0);
-            }
-        }
-
-        @keyframes cardFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-3px);
             }
         }
 
@@ -498,7 +489,7 @@
 
         @media (min-width: 768px) {
             .phone-container {
-                transform: scale(1);
+                transform: scale(0.9);
             }
         }
 
@@ -507,6 +498,7 @@
                 width: 320px;
                 height: 650px;
                 transform: scale(1);
+                animation: phoneAppear 1s ease forwards, phoneGlow 4s ease-in-out 1s infinite, phoneTilt 6s ease-in-out 1s infinite;
             }
             
             .numpad-btn {
@@ -599,7 +591,7 @@
         const imageUpload = document.getElementById('imageUpload');
         const previewImage = document.getElementById('previewImage');
         
-        // Helper functions (DEFINIDAS PRIMERO)
+        // Helper functions
         function stopPhoneAnimation() {
             const phoneContainer = document.querySelector('.phone-container');
             phoneContainer.style.animation = 'phoneAppear 1s ease forwards';
