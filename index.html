@@ -42,13 +42,13 @@
             padding: 15px;
             position: relative;
             overflow: hidden;
-            transform: scale(1.2);
+            transform: scale(1.05);
             animation: phoneAppear 1s ease forwards, phoneGlow 4s ease-in-out 1s infinite, phoneTilt 6s ease-in-out 1s infinite;
         }
 
         @keyframes phoneAppear {
-            0% { opacity: 0; transform: scale(1.08); }
-            100% { opacity: 1; transform: scale(1.2); }
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1.05); }
         }
 
         @keyframes phoneGlow {
@@ -66,13 +66,13 @@
 
         @keyframes phoneTilt {
             0%, 100% {
-                transform: scale(1.2) rotateZ(0deg);
+                transform: scale(1.05) rotateZ(0deg);
             }
             25% {
-                transform: scale(1.2) rotateZ(1.5deg);
+                transform: scale(1.05) rotateZ(1.5deg);
             }
             75% {
-                transform: scale(1.2) rotateZ(-1.5deg);
+                transform: scale(1.05) rotateZ(-1.5deg);
             }
         }
 
@@ -489,7 +489,7 @@
 
         @media (min-width: 768px) {
             .phone-container {
-                transform: scale(1.2);
+                transform: scale(1.05);
             }
         }
 
@@ -497,7 +497,7 @@
             .phone-container {
                 width: 320px;
                 height: 650px;
-                transform: scale(1.2);
+                transform: scale(1.05);
             }
             
             .numpad-btn {
